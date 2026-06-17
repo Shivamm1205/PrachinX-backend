@@ -1,0 +1,21 @@
+### Register User
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "Prachin",
+  "lastName": "X",
+  "username": "prachinx",
+  "email": "prachinx@gmail.com",
+  "password": "12345678",
+  "phoneNumber": "9999999999"
+}
+
+### Login User
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "prachinx@gmail.com",
+  "password": "12345678"
+}

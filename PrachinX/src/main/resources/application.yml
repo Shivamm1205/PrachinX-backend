@@ -1,0 +1,47 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: PrachinX
+  datasource:
+    url: jdbc:postgresql://localhost:5432/PrachinX
+    username: postgres
+    password: Prachita1@
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+jwt:
+  secret: praXSecretKey2024VeryLongSecretKeyForJWTTokenGeneration
+  expiration: 86400000
+
+ai:
+  engine:
+    url: http://localhost:8000
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    spring:
+      jpa:
+        hibernate:
+          ddl-auto: update
+        show-sql: true
+        open-in-view: false
+
+logging:
+  level:
+    com.trading: DEBUG
+    org.springframework.security: DEBUG
