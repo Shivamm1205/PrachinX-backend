@@ -14,9 +14,9 @@
     </parent>
 
     <groupId>com.trading</groupId>
-    <artifactId>prachinX</artifactId>
+    <artifactId>PrachinX</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>praX</name>
+    <name>PrachinX</name>
     <description>prachinX - AI Trading Platform</description>
     <properties>
         <java.version>21</java.version>
