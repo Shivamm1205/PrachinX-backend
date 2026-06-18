@@ -5,9 +5,9 @@ spring:
   application:
     name: PrachinX
   datasource:
-    url: jdbc:postgresql://localhost:5432/PrachinX
-    username: postgres
-    password: Prachita1@
+    url: jdbc:postgresql://ep-frosty-sky-aio9t8ks-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require
+    username: neondb_owner
+    password: npg_NKVkptZch5y8
   jpa:
     hibernate:
       ddl-auto: update
