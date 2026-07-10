@@ -7,9 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface PortfolioRepository extends JpaRepository<Portfolio, Long> {
-
+public interface PortfolioRepository extends JpaRepository<Portfolio, String> {
     Optional<Portfolio> findByUser(User user);
-
-    Optional<Portfolio> findByUserId(Long userId);
+    Optional<Portfolio> findByUserId(String userId);
 }

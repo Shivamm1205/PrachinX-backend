@@ -7,9 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BotRepository extends JpaRepository<TradingBot, Long> {
-
+public interface BotRepository extends JpaRepository<TradingBot, String> {
     List<TradingBot> findByUser(User user);
-
     List<TradingBot> findByUserAndStatus(User user, TradingBot.BotStatus status);
 }

@@ -6,19 +6,19 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import java.time.LocalDateTime;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.UUID;
+
 @Entity
 @Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id", updatable = false, nullable = false)
+    private String id;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -36,7 +36,6 @@ public class User {
     private String username;
 
     private String phoneNumber;
-
     private String profileImage;
 
     @Enumerated(EnumType.STRING)
@@ -54,6 +53,13 @@ public class User {
 
     @Builder.Default
     private LocalDateTime updatedAt = LocalDateTime.now();
+
+    @PrePersist
+    public void generateId() {
+        if (this.id == null) {
+            this.id = UUID.randomUUID().toString();
+        }
+    }
 
     public enum Role {
         USER, ADMIN, TRADER

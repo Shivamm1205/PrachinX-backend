@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "portfolios")
@@ -17,8 +18,8 @@ import java.time.LocalDateTime;
 public class Portfolio {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id", updatable = false, nullable = false)
+    private String id;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -50,9 +51,10 @@ public class Portfolio {
     @Builder.Default
     private LocalDateTime updatedAt = LocalDateTime.now();
 
-    public void deposit(java.math.BigDecimal amount) {
-        this.availableBalance = this.availableBalance.add(amount);
-        this.totalBalance = this.totalBalance.add(amount);
-        this.updatedAt = java.time.LocalDateTime.now();
+    @PrePersist
+    public void generateId() {
+        if (this.id == null) {
+            this.id = UUID.randomUUID().toString();
+        }
     }
 }

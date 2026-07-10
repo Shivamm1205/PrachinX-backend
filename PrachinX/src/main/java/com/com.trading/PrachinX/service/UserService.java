@@ -20,7 +20,7 @@ public class UserService {
                         new CustomException("User not found", HttpStatus.NOT_FOUND));
     }
 
-    public User getUserById(Long id) {
+    public User getUserById(String id) {
         return userRepository.findById(id)
                 .orElseThrow(() ->
                         new CustomException("User not found", HttpStatus.NOT_FOUND));
@@ -31,7 +31,7 @@ public class UserService {
     }
 
     public User updateUser(Long id, User updatedUser) {
-        User user = getUserById(id);
+        User user = getUserById(String.valueOf(id));
         user.setFirstName(updatedUser.getFirstName());
         user.setLastName(updatedUser.getLastName());
         user.setPhoneNumber(updatedUser.getPhoneNumber());
@@ -40,7 +40,7 @@ public class UserService {
     }
 
     public void deleteUser(Long id) {
-        User user = getUserById(id);
+        User user = getUserById(String.valueOf(id));
         userRepository.delete(user);
     }
 }

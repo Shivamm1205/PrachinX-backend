@@ -7,11 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TradeRepository extends JpaRepository<Trade, Long> {
-
+public interface TradeRepository extends JpaRepository<Trade, String> {
     List<Trade> findByUserOrderByCreatedAtDesc(User user);
-
     List<Trade> findByUserAndSymbol(User user, String symbol);
-
     List<Trade> findByUserAndStatus(User user, Trade.TradeStatus status);
 }
