@@ -30,13 +30,13 @@ public class BotService {
         return botRepository.findByUser(user);
     }
 
-    public TradingBot getBotById(Long id) {
+    public TradingBot getBotById(String id) {
         return botRepository.findById(id)
                 .orElseThrow(() ->
                         new CustomException("Bot not found", HttpStatus.NOT_FOUND));
     }
 
-    public TradingBot startBot(Long id, String email) {
+    public TradingBot startBot(String id, String email) {
         TradingBot bot = getBotById(id);
         if (!bot.getUser().getEmail().equals(email)) {
             throw new CustomException("Unauthorized", HttpStatus.FORBIDDEN);
@@ -45,7 +45,7 @@ public class BotService {
         return botRepository.save(bot);
     }
 
-    public TradingBot stopBot(Long id, String email) {
+    public TradingBot stopBot(String id, String email) {
         TradingBot bot = getBotById(id);
         if (!bot.getUser().getEmail().equals(email)) {
             throw new CustomException("Unauthorized", HttpStatus.FORBIDDEN);
@@ -54,7 +54,7 @@ public class BotService {
         return botRepository.save(bot);
     }
 
-    public void deleteBot(Long id, String email) {
+    public void deleteBot(String id, String email) {
         TradingBot bot = getBotById(id);
         if (!bot.getUser().getEmail().equals(email)) {
             throw new CustomException("Unauthorized", HttpStatus.FORBIDDEN);

@@ -42,7 +42,7 @@ public class TradingController {
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<Trade>> getTradeById(
             @PathVariable Long id) {
-        Trade trade = tradingService.getTradeById(id);
+        Trade trade = tradingService.getTradeById(String.valueOf(id));
         return ResponseEntity.ok(
                 ApiResponse.success("Trade fetched successfully", trade));
     }
@@ -52,7 +52,7 @@ public class TradingController {
             @PathVariable Long id,
             @AuthenticationPrincipal UserDetails userDetails) {
         Trade trade = tradingService.cancelTrade(
-                id, userDetails.getUsername());
+                String.valueOf(id), userDetails.getUsername());
         return ResponseEntity.ok(
                 ApiResponse.success("Trade cancelled successfully", trade));
     }

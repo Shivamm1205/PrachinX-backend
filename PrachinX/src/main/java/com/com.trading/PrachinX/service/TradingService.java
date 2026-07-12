@@ -67,13 +67,13 @@ public class TradingService {
         return tradeRepository.findByUserOrderByCreatedAtDesc(user);
     }
 
-    public Trade getTradeById(Long id) {
+    public Trade getTradeById(String id) {
         return tradeRepository.findById(id)
                 .orElseThrow(() -> new CustomException(
                         "Trade not found", HttpStatus.NOT_FOUND));
     }
 
-    public Trade cancelTrade(Long id, String email) {
+    public Trade cancelTrade(String id, String email) {{
         Trade trade = getTradeById(id);
         if (!trade.getUser().getEmail().equals(email)) {
             throw new CustomException(
@@ -87,4 +87,4 @@ public class TradingService {
         trade.setStatus(Trade.TradeStatus.CANCELLED);
         return tradeRepository.save(trade);
     }
-}
+} }
