@@ -20,18 +20,21 @@ public class UserController {
     @GetMapping("/me")
     public ResponseEntity<ApiResponse<User>> getCurrentUser(
             @AuthenticationPrincipal UserDetails userDetails) {
-        User user = userService.getUserByEmail(userDetails.getUsername());
+        User user = userService.getUserByEmail(
+                userDetails.getUsername());
         return ResponseEntity.ok(
-                ApiResponse.success("User fetched successfully", user));
+                ApiResponse.success("User fetched", user));
     }
 
     @PutMapping("/me")
     public ResponseEntity<ApiResponse<User>> updateCurrentUser(
             @AuthenticationPrincipal UserDetails userDetails,
             @RequestBody User updatedUser) {
-        User user = userService.getUserByEmail(userDetails.getUsername());
-        User updated = userService.updateUser(user.getId(), updatedUser);
+        User user = userService.getUserByEmail(
+                userDetails.getUsername());
+        User updated = userService.updateUser(
+                user.getId(), updatedUser);
         return ResponseEntity.ok(
-                ApiResponse.success("User updated successfully", updated));
+                ApiResponse.success("User updated", updated));
     }
 }
