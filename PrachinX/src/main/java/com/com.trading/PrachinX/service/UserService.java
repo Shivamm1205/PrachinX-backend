@@ -16,22 +16,22 @@ public class UserService {
 
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email)
-                .orElseThrow(() ->
-                        new CustomException("User not found", HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new CustomException(
+                        "User not found", HttpStatus.NOT_FOUND));
     }
 
     public User getUserById(String id) {
         return userRepository.findById(id)
-                .orElseThrow(() ->
-                        new CustomException("User not found", HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new CustomException(
+                        "User not found", HttpStatus.NOT_FOUND));
     }
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public User updateUser(Long id, User updatedUser) {
-        User user = getUserById(String.valueOf(id));
+    public User updateUser(String id, User updatedUser) {
+        User user = getUserById(id);
         user.setFirstName(updatedUser.getFirstName());
         user.setLastName(updatedUser.getLastName());
         user.setPhoneNumber(updatedUser.getPhoneNumber());
@@ -39,8 +39,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void deleteUser(Long id) {
-        User user = getUserById(String.valueOf(id));
+    public void deleteUser(String id) {
+        User user = getUserById(id);
         userRepository.delete(user);
     }
 }
